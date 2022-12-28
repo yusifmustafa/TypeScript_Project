@@ -5,11 +5,12 @@ import { FaPen, FaTrash, FaSearch } from "react-icons/fa";
 import { UserContext } from "../../Context/UserContextProvider";
 import { UserType } from "../types";
 import "./TableList.css";
+import AddUser from "../AddUser/AddUser";
 
 const TableList = () => {
   const context = useContext(UserContext);
-  const { getAllUser, getAllDataFromApi } = context;
-  console.log("getAllUser", getAllUser);
+  const { getAllUser, getAllDataFromApi, openAddUserModal, openModal } =
+    context;
 
   React.useEffect(() => {
     getAllDataFromApi();
@@ -22,9 +23,9 @@ const TableList = () => {
           İşçilərin Siyahısı
         </h2>{" "}
         <br />
-        <Link to="/add-user" className="adduser">
+        <button onClick={openAddUserModal} className="btn btn-primary adduser">
           Əlavə et
-        </Link>
+        </button>
       </div>
       <table className="table table-striped">
         <thead>
@@ -65,6 +66,7 @@ const TableList = () => {
             </tr>
           ))}
         </tbody>
+        {openModal && <AddUser />}
       </table>
     </div>
   );
