@@ -1,13 +1,16 @@
 import React from "react";
 import "./App.css";
-import TableList from "./Components/TableList/TableList";
+import UserContextProvider from "./Context/UserContextProvider";
 import { Routes, Route } from "react-router-dom";
+import  TableList  from "./Components/TableList/TableList";
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<TableList />} />
-      </Routes>
+      <UserContextProvider>
+        <Routes>
+          <Route path="/" element={<TableList />} />
+        </Routes>
+      </UserContextProvider>
     </>
   );
 }

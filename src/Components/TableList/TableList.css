@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.goToHomePage {
+  color: #fff;
+}
+
+.tablelist {
+  background: #fff;
+  padding: 0.55rem;
+}
+
+.tablelist h3 {
+  float: left;
+  margin-left: 0.75rem;
+  padding: 0.75rem;
+}
+
+.tablelist .adduser {
+  float: right;
+  margin-right: 0.75rem;
+  padding: 0.75rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgb(115, 0, 255);
+  font-size: 1rem;
+}
+
+.adduser:hover {
+  color: rgb(77, 86, 255);
+}
+
+.user-about {
+  opacity: 0.4;
+}
+
+#addUser {
+  float: right;
+  font-weight: 600;
+  background: rgb(115, 0, 255);
+  border: rgb(115, 0, 255);
+}
+
+#addUser:hover {
+  background-color: rgb(70, 0, 255);
+  border: rgb(115, 0, 255);
+}
+
+.edit-button {
+  font-size: 1.2rem;
+}
+.edit_delete {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
