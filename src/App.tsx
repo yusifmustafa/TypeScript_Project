@@ -1,12 +1,14 @@
 import React from "react";
 import "./App.css";
 import TableList from "./Components/TableList/TableList";
- 
+import { Routes, Route } from "react-router-dom";
 function App() {
   return (
-    <div className="App">
-      <TableList />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<TableList />} />
+      </Routes>
+    </>
   );
 }
 
