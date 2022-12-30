@@ -1,6 +1,5 @@
 import React from "react";
-import Personal from "./Personal";
-
+ 
 const AddUser = () => {
   return (
     <div>
@@ -53,8 +52,7 @@ const AddUser = () => {
           role="tabpanel"
           aria-labelledby="ex1-tab-1"
         >
-          <Personal />
-        </div>
+         </div>
         <div
           className="tab-pane fade"
           id="ex1-tabs-2"
