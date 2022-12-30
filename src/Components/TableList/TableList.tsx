@@ -7,7 +7,6 @@ import { UserType } from "../types";
 import "./TableList.css";
 import AddUser from "../AddUser/AddUser";
 import Swal from "sweetalert2";
-
 const TableList = () => {
   const context = useContext(UserContext);
   const {
@@ -32,7 +31,7 @@ const TableList = () => {
       cancelButtonText: "GERİ QAYIT",
       cancelButtonColor: "#d33",
       confirmButtonText: "SİL",
-    }).then((result) => {
+    }).then((result: any) => {
       if (result.isConfirmed) {
         deleteData(id);
         Swal.fire("İstifadəçi silindi!", "", "success");
