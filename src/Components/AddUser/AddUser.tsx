@@ -14,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
 const AddUser = () => {
   const context = React.useContext(UserContext);
-  const { handleOnChange, InsertData, user, openModal } = context;
+  const { handleOnChange, InsertData, user, openModal, getUserById } = context;
   console.log(user);
 
   const handleOnSubmit = (user: any) => {
@@ -25,7 +25,7 @@ const AddUser = () => {
   const { id } = useParams();
 
   React.useEffect(() => {
-    
+    getUserById(id);
   }, [id]);
 
   console.log("id:", id);

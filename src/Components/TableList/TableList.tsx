@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FaPen, FaTrash } from "react-icons/fa";
 import { UserContext } from "../../Context/UserContextProvider";
 import { UserType } from "../types";
-import "./TableList.css";
+ import "./TableList.css";
 import AddUser from "../AddUser/AddUser";
 import Swal from "sweetalert2";
 const TableList = () => {
@@ -76,7 +76,7 @@ const TableList = () => {
               <td>{item.username}</td>
               <td className="edit_delete">
                 <div className="edit-button">
-                  <Link to="/" className="edit-button">
+                  <Link to={`/edit-user/${item.id}`} className="edit-button">
                     <FaPen />
                   </Link>
                 </div>

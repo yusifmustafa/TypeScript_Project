@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 interface Iuser {
   children: React.ReactNode;
 }
@@ -11,10 +12,11 @@ const INITIAL_STATE = {
   openModal: false,
   user: {},
 };
-console.log("openModal", INITIAL_STATE.openModal);
 const UserProvider: FunctionComponent<Iuser> = (props) => {
   const notify1 = () => toast.error("Xanaları tam doldurun");
   const [state, setState] = React.useState(INITIAL_STATE);
+  const navigate = useNavigate();
+
   return (
     <UserContext.Provider
       value={{
@@ -40,9 +42,9 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
   }
 
   function getUserById(id: number) {
-    axios.get(`http://127.0.0.1:3000${id}`).then((rsp) => {
+    axios.get(`http://127.0.0.1:3000/${id}`).then((rsp) => {
       const data = rsp?.data;
-      setState({ ...state, user: data });
+      setState({ ...state, user: data, openModal: true });
     });
   }
 
@@ -68,6 +70,7 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
   }
   function closeAddUserModal() {
     setState({ ...state, openModal: false });
+    navigate("/");
   }
 
   function handleOnChange(event: any) {
