@@ -31,7 +31,7 @@ const TableList = () => {
       cancelButtonText: "GERİ QAYIT",
       cancelButtonColor: "#d33",
       confirmButtonText: "SİL",
-    }).then((result: any) => {
+    }).then((result) => {
       if (result.isConfirmed) {
         deleteData(id);
         Swal.fire("İstifadəçi silindi!", "", "success");

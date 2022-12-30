@@ -25,6 +25,7 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
         handleOnChange: handleOnChange,
         InsertData: InsertData,
         deleteData: deleteData,
+        getUserById: getUserById,
       }}
     >
       {props.children}
@@ -35,6 +36,13 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
     axios.get("http://127.0.0.1:3000").then((rsp) => {
       const data = rsp.data;
       setState({ ...state, getAllUser: data, openModal: false });
+    });
+  }
+
+  function getUserById(id: number) {
+    axios.get(`http://127.0.0.1:3000${id}`).then((rsp) => {
+      const data = rsp?.data;
+      setState({ ...state, user: data });
     });
   }
 

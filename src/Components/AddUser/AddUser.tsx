@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useParams } from "react-router-dom";
 const AddUser = () => {
   const context = React.useContext(UserContext);
   const { handleOnChange, InsertData, user, openModal } = context;
@@ -22,6 +22,13 @@ const AddUser = () => {
       InsertData(user);
     }
   };
+  const { id } = useParams();
+
+  React.useEffect(() => {
+    
+  }, [id]);
+
+  console.log("id:", id);
 
   const modalstyle = {
     background: "rgba(255, 255, 255, 0.25)",
