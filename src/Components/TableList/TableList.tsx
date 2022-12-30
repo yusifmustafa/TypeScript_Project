@@ -63,7 +63,7 @@ const TableList = () => {
             <th scope="col">Soyadı</th>
             <th scope="col">Ata adı</th>
             <th scope="col">İstifadəçi adı</th>
-            <th scope="col">Vəzifəsi</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>

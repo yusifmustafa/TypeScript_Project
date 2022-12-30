@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { UserTypes } from "../types";
 interface Iuser {
   children: React.ReactNode;
 }
@@ -28,6 +29,7 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
         InsertData: InsertData,
         deleteData: deleteData,
         getUserById: getUserById,
+        updatePerson: updatePerson,
       }}
     >
       {props.children}
@@ -44,7 +46,19 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
   function getUserById(id: number) {
     axios.get(`http://127.0.0.1:3000/${id}`).then((rsp) => {
       const data = rsp?.data;
-      setState({ ...state, user: data, openModal: true });
+      data.map((item: UserTypes) => {
+        const obj = {
+          id: item.id,
+          name: item.name,
+          surname: item.surname,
+          patronymic: item.patronymic,
+          username: item.username,
+          idnumber: item.idnumber,
+          pincode: item.pincode,
+          citizenship: item.citizenship,
+        };
+        setState({ ...state, user: obj, openModal: true });
+      });
     });
   }
 
@@ -63,6 +77,15 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
     axios.delete(`http://127.0.0.1:3000/${id}`).then((rsp) => {
       getAllDataFromApi();
     });
+  }
+
+  function updatePerson(id: number, user: any) {
+    axios.put(`http://127.0.0.1:3000/${id}`, user).then((rsp) => {
+      const data = rsp?.data;
+      console.log("updateData", data);
+      setState({ ...state, user: data, openModal: false });
+    });
+    navigate("/");
   }
 
   function openAddUserModal() {
