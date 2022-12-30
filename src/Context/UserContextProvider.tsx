@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 interface Iuser {
   children: React.ReactNode;
 }
@@ -10,7 +11,9 @@ const INITIAL_STATE = {
   openModal: false,
   user: {},
 };
+console.log("openModal", INITIAL_STATE.openModal);
 const UserProvider: FunctionComponent<Iuser> = (props) => {
+  const notify1 = () => toast.error("Xanaları tam doldurun");
   const [state, setState] = React.useState(INITIAL_STATE);
   return (
     <UserContext.Provider
@@ -21,6 +24,7 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
         closeAddUserModal: closeAddUserModal,
         handleOnChange: handleOnChange,
         InsertData: InsertData,
+        openDeleteModal: openDeleteModal,
       }}
     >
       {props.children}
@@ -30,21 +34,31 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
   function getAllDataFromApi() {
     axios.get("http://127.0.0.1:3000").then((rsp) => {
       const data = rsp.data;
-      setState({ ...state, getAllUser: data });
+      setState({ ...state, getAllUser: data, openModal: false });
     });
   }
 
   function InsertData(user: object) {
-    axios.post("http://127.0.0.1:3000", user).then(() => {});
+    axios.post("http://127.0.0.1:3000", user).then((rsp) => {
+      const data = rsp?.data;
+      if (data === false) {
+        notify1();
+        return;
+      }
+      getAllDataFromApi();
+    });
   }
 
   function openAddUserModal() {
-    setState({ ...state, openModal: true });
+    setState({ ...state, openModal: true, user: {} });
   }
   function closeAddUserModal() {
     setState({ ...state, openModal: false });
   }
 
+  function openDeleteModal() {
+    setState({ ...state, openModal: true });
+  }
   function handleOnChange(event: any) {
     const { name, value } = event;
     setState(
