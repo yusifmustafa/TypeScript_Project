@@ -24,7 +24,7 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
         closeAddUserModal: closeAddUserModal,
         handleOnChange: handleOnChange,
         InsertData: InsertData,
-        openDeleteModal: openDeleteModal,
+        deleteData: deleteData,
       }}
     >
       {props.children}
@@ -49,6 +49,12 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
     });
   }
 
+  function deleteData(id: number) {
+    axios.delete(`http://127.0.0.1:3000/${id}`).then((rsp) => {
+      getAllDataFromApi();
+    });
+  }
+
   function openAddUserModal() {
     setState({ ...state, openModal: true, user: {} });
   }
@@ -56,9 +62,6 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
     setState({ ...state, openModal: false });
   }
 
-  function openDeleteModal() {
-    setState({ ...state, openModal: true });
-  }
   function handleOnChange(event: any) {
     const { name, value } = event;
     setState(
