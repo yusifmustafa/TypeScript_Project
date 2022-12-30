@@ -1,4 +1,5 @@
 import React from "react";
+import Personal from "./Personal";
 
 const AddUser = () => {
   return (
@@ -14,7 +15,7 @@ const AddUser = () => {
             aria-controls="ex1-tabs-1"
             aria-selected="true"
           >
-            Tab 1
+            Personal
           </a>
         </li>
         <li className="nav-item" role="presentation">
@@ -52,7 +53,7 @@ const AddUser = () => {
           role="tabpanel"
           aria-labelledby="ex1-tab-1"
         >
-          Tab 1 content
+          <Personal />
         </div>
         <div
           className="tab-pane fade"
