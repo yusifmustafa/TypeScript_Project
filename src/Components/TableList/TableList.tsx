@@ -7,7 +7,6 @@ import { UserType } from "../types";
 import "./TableList.css";
 import AddUser from "../AddUser/AddUser";
 import Swal from "sweetalert2";
-
 const TableList = () => {
   const navigate = useNavigate();
   const context = useContext(UserContext);
@@ -65,7 +64,7 @@ const TableList = () => {
             <th scope="col">Soyadı</th>
             <th scope="col">Ata adı</th>
             <th scope="col">İstifadəçi adı</th>
-            <th scope="col">Vəzifəsi</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -78,7 +77,11 @@ const TableList = () => {
               <td>{item.username}</td>
               <td className="edit_delete">
                 <div className="edit-button">
+<<<<<<< HEAD
                   <Link to={`/${item.id}`} className="edit-button">
+=======
+                  <Link to={`/edit-user/${item.id}`} className="edit-button">
+>>>>>>> delete_method-branch
                     <FaPen />
                   </Link>
                 </div>

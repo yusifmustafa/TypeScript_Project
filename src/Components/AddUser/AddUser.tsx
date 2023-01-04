@@ -1,6 +1,55 @@
 import React from "react";
+<<<<<<< HEAD
  
 const AddUser = () => {
+=======
+import { UserContext } from "../../Context/UserContextProvider";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useParams } from "react-router-dom";
+const AddUser = () => {
+  const context = React.useContext(UserContext);
+  const {
+    handleOnChange,
+    InsertData,
+    user,
+    openModal,
+    getUserById,
+    updatePerson,
+  } = context;
+  console.log("user", user);
+  const { id } = useParams();
+
+  React.useEffect(() => {
+    getUserById(id);
+  }, [id]);
+  const handleOnSubmit = (user: any) => {
+    if (user.id === 0 || user.id === undefined) {
+      InsertData(user);
+    } else if (user.id > 0) {
+      updatePerson(id, user);
+    }
+  };
+
+  console.log("id:", id);
+
+  const modalstyle = {
+    background: "rgba(255, 255, 255, 0.25)",
+    boxShadow: "rgba(255, 255, 255, 0.25)",
+    backdropFilter: "blur(11px)",
+    border: "1px solid rgba(255, 255, 255, 0.18)",
+  };
+
+>>>>>>> delete_method-branch
   return (
     <div>
       <ul className="nav nav-tabs mb-3" id="ex1" role="tablist">

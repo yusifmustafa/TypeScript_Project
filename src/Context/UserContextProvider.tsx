@@ -1,6 +1,10 @@
 import React, { FunctionComponent } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+<<<<<<< HEAD
+=======
+import { useNavigate } from "react-router-dom";
+>>>>>>> delete_method-branch
 import { UserTypes } from "../types";
 interface Iuser {
   children: React.ReactNode;
@@ -15,6 +19,8 @@ const INITIAL_STATE = {
 const UserProvider: FunctionComponent<Iuser> = (props) => {
   const notify1 = () => toast.error("Xanaları tam doldurun");
   const [state, setState] = React.useState(INITIAL_STATE);
+  const navigate = useNavigate();
+
   return (
     <UserContext.Provider
       value={{
@@ -25,7 +31,11 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
         handleOnChange: handleOnChange,
         InsertData: InsertData,
         deleteData: deleteData,
+<<<<<<< HEAD
         getUserInfoById: getUserInfoById,
+=======
+        getUserById: getUserById,
+>>>>>>> delete_method-branch
         updatePerson: updatePerson,
       }}
     >
@@ -40,10 +50,16 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
     });
   }
 
+<<<<<<< HEAD
   function getUserInfoById(id: number) {
     axios.get(`http://127.0.0.1:3000/${id}`).then((rsp) => {
       const data = rsp?.data;
       console.log("data", data);
+=======
+  function getUserById(id: number) {
+    axios.get(`http://127.0.0.1:3000/${id}`).then((rsp) => {
+      const data = rsp?.data;
+>>>>>>> delete_method-branch
       data.map((item: UserTypes) => {
         const obj = {
           id: item.id,
@@ -77,11 +93,21 @@ const UserProvider: FunctionComponent<Iuser> = (props) => {
     });
   }
 
+  function updatePerson(id: number, user: any) {
+    axios.put(`http://127.0.0.1:3000/${id}`, user).then((rsp) => {
+      const data = rsp?.data;
+      console.log("updateData", data);
+      setState({ ...state, user: data, openModal: false });
+    });
+    navigate("/");
+  }
+
   function openAddUserModal() {
     setState({ ...state, openModal: true, user: {} });
   }
   function closeAddUserModal() {
     setState({ ...state, openModal: false });
+    navigate("/");
   }
 
   function handleOnChange(event: any) {

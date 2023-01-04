@@ -10,7 +10,10 @@ function App() {
       <UserContextProvider>
         <Routes>
           <Route path="/" element={<TableList />} />
+<<<<<<< HEAD
           <Route path="/adduser" element={<AddUser />} />
+=======
+>>>>>>> delete_method-branch
           <Route path="/edit-user/:id" element={<AddUser />} />
         </Routes>
       </UserContextProvider>
